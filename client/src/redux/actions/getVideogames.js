@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_VIDEOGAMES, ERROR } from './types';
+import { GET_VIDEOGAMES, ERROR } from '../types.js';
 const ENDPOINT = 'http://localhost:3001/videogames';
 
 export const getVideogames = () => {

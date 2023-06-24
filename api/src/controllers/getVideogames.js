@@ -33,7 +33,7 @@ module.exports = async (req, res) => {
                 name: game.name,
                 platforms: game.platforms.map(platform => platform.platform.name),
                 genres: game.genres.map(genre => genre.name),
-                image: game.image,
+                image: game.background_image,
                 releaseDate: game.released,
                 rating: game.rating,
             }

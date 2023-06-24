@@ -1,4 +1,5 @@
-import styles from "./Landing.module.css"
+import React  from 'react';
+import styles from "./Landing.module.css";
 import { useNavigate } from "react-router-dom";
 
 export default function Landing(props) {
