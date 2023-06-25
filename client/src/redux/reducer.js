@@ -1,7 +1,8 @@
-import { GET_VIDEOGAMES, ERROR } from "./types";
+import { GET_VIDEOGAMES, GET_VIDEOGAME_BY_ID, ERROR } from "./types";
 
 const initialState = {
     allVideogames: [],
+    videogameDetail: {},
     errors: false
 }
 
@@ -11,6 +12,13 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 allVideogames: action.payload,
+                errors: false
+            }
+        }
+        case GET_VIDEOGAME_BY_ID: {
+            return {
+                ...state,
+                videogameDetail: action.payload,
                 errors: false
             }
         }

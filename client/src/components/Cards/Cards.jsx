@@ -16,6 +16,7 @@ function Cards(props) {
                 return <Card 
                     id={game.id}
                     name = {game.name}
+                    genres = {game.genres}
                     image = {game.image}
                 />
             })
