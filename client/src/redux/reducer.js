@@ -1,6 +1,7 @@
-import { GET_VIDEOGAMES, GET_VIDEOGAME_BY_ID, ERROR } from "./types";
+import { GET_VIDEOGAMES, GET_VIDEOGAME_BY_ID, FILTER_BY_GENRE, ERROR } from "./types";
 
 const initialState = {
+    videogamesFullList: [],
     allVideogames: [],
     videogameDetail: {},
     errors: false
@@ -11,6 +12,7 @@ const reducer = (state = initialState, action) => {
         case GET_VIDEOGAMES: {
             return {
                 ...state,
+                videogamesFullList: action.payload,
                 allVideogames: action.payload,
                 errors: false
             }
@@ -26,6 +28,16 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 errors: action.payload
+            }
+        }
+        case FILTER_BY_GENRE: {
+            if(action.payload === "All") return {...state, allVideogames: state.videogamesFullList}
+            const allVideogamesCopy = [...state.videogamesFullList];
+            
+            const filteredVideogames = allVideogamesCopy.filter(videogame => videogame.genres.includes(action.payload));
+            return {
+                ...state,
+                allVideogames: filteredVideogames
             }
         }
         default: {
