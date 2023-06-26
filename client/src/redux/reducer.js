@@ -1,4 +1,4 @@
-import { GET_VIDEOGAMES, GET_VIDEOGAME_BY_ID, FILTER_BY_GENRE, FILTER_BY_ORIGIN, ORDER, ERROR } from "./types";
+import { GET_VIDEOGAMES, GET_VIDEOGAME_BY_ID, FILTER, ORDER, ERROR } from "./types";
 
 const initialState = {
     videogamesFullList: [],
@@ -30,21 +30,13 @@ const reducer = (state = initialState, action) => {
                 errors: action.payload
             }
         }
-        case FILTER_BY_GENRE: {
-            if(action.payload === "All") return {...state, allVideogames: state.videogamesFullList}
-            const allVideogamesCopy = [...state.videogamesFullList];
-            const filteredVideogames = allVideogamesCopy.filter(videogame => videogame.genres.includes(action.payload));
-            return {
-                ...state,
-                allVideogames: filteredVideogames
-            }
-        }
-        case FILTER_BY_ORIGIN: {
+        case FILTER: {
             if(action.payload === "All") return {...state, allVideogames: state.videogamesFullList}
             const allVideogamesCopy = [...state.videogamesFullList];
             const filteredVideogames = allVideogamesCopy.filter(videogame => {
                 if(action.payload === "Database") return typeof(videogame.id) === "string";
-                return typeof(videogame.id) === "number";
+                else if (action.payload === "API") return typeof(videogame.id) === "number"; 
+                return videogame.genres.includes(action.payload)
             });
             return {
                 ...state,
