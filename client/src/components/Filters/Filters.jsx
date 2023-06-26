@@ -1,7 +1,7 @@
 import React  from 'react';
 import styles from "./Filters.module.css";
 import { useDispatch } from "react-redux";
-import { filterByGenre, filterByOrigin } from '../../redux/actions/filter.js';
+import { filterByGenre, filterByOrigin, order } from '../../redux/actions/filter.js';
 
 export default function Filters(props) {
     const dispatch = useDispatch();
@@ -14,13 +14,26 @@ export default function Filters(props) {
         dispatch(filterByOrigin(event.target.value));
     }
 
+    const handleOrder = (event) => {
+        dispatch(order(event.target.value));
+    }
+
     return (
-        <div className={styles.filtersContainer}> 
-            {/* <select name="order" className={styles.dropDown} onChange={handleOrder}>
-            <option className={styles.option} value="A">Ascendent</option>
-            <option className={styles.option} value="D">Descendent</option>
-            </select> */}
-            <select name="Filter By Genre" className={styles.dropDown} onChange={handleFilterByGenre}>
+        <div className={styles.filtersContainer}>
+            <label for="OrderBy">Order by: </label>
+            <select name="OrderBy" className={styles.dropDown} onChange={handleOrder}>
+                <option className={styles.mainOption} value="Default">Default</option>
+                <optgroup label="Order By Name">
+                    <option className={styles.mainOption} value="A-Z">A-Z</option>
+                    <option className={styles.option} value="Z-A">Z-A</option>
+                </optgroup>
+                <optgroup label="Order By Rating">
+                    <option className={styles.mainOption} value="Ascending">Ascending</option>
+                    <option className={styles.option} value="Descending">Descending</option>
+                </optgroup>
+            </select>
+            <label for="FilterByGenre">Filter by genre: </label>
+            <select name="FilterByGenre" className={styles.dropDown} onChange={handleFilterByGenre}>
                 <option className={styles.option} value="All">All</option>
                 <option className={styles.option} value="Action">Action</option>
                 <option className={styles.option} value="Indie">Indie</option>
@@ -42,7 +55,8 @@ export default function Filters(props) {
                 <option className={styles.option} value="Educational">Educational</option>
                 <option className={styles.option} value="Card">Card</option>
             </select>
-            <select name="Filter By Genre" className={styles.dropDown} onChange={handleFilterByOrigin}>
+            <label for="FilterByOrigin">Filter by origin: </label>
+            <select name="FilterByOrigin" className={styles.dropDown} onChange={handleFilterByOrigin}>
                 <option className={styles.option} value="All">All</option>
                 <option className={styles.option} value="Database">Database</option>
                 <option className={styles.option} value="API">API</option>
