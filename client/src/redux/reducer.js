@@ -1,9 +1,10 @@
-import { GET_VIDEOGAMES, GET_VIDEOGAME_BY_ID, FILTER, ORDER, ERROR } from "./types";
+import { GET_VIDEOGAMES, GET_VIDEOGAME_BY_ID, POST_VIDEOGAME, FILTER, ORDER, GET_GENRES, ERROR } from "./types";
 
 const initialState = {
     videogamesFullList: [],
     allVideogames: [],
     videogameDetail: {},
+    genres: [],
     errors: false
 }
 
@@ -23,6 +24,9 @@ const reducer = (state = initialState, action) => {
                 videogameDetail: action.payload,
                 errors: false
             }
+        }
+        case POST_VIDEOGAME: {
+            return { ...state }
         }
         case ERROR: {
             return {
@@ -60,6 +64,13 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 allVideogames: newOrder
+            }
+        }
+        case GET_GENRES: {
+            return {
+                ...state,
+                genres: action.payload,
+                errors: false
             }
         }
         default: {

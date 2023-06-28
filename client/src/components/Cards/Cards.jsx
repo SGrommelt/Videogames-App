@@ -2,12 +2,16 @@ import styles from './Cards.module.css';
 import { useDispatch, connect } from 'react-redux';
 import { React, useEffect } from 'react';
 import { getVideogames } from '../../redux/actions/getVideogames';
+import { getGenres } from '../../redux/actions/getGenres';
 import Card from './Card';
 
 
 function Cards(props) {
     const dispatch = useDispatch();
-    useEffect(() => {dispatch(getVideogames())}, [dispatch]);
+    useEffect(() => {
+        dispatch(getVideogames());
+        dispatch(getGenres());
+    }, [dispatch]);
 
     return (
         <div className={styles.background}>
