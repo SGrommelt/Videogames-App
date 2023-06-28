@@ -1,6 +1,6 @@
 require('dotenv').config();
 const { API_KEY } = process.env;
-const { Videogame } = require("../db.js");
+const { Videogame, Genre } = require("../db.js");
 const axios = require('axios');
 const sequelize = require('sequelize');
 
@@ -25,7 +25,26 @@ module.exports = async (req, res) => {
                 videogameData = await axios.get(videogameData.data.next);
                 i++;
             }
-            dbVideogames = await Videogame.findAll();
+            dbVideogames = await Videogame.findAll({
+                include: [{
+                    model: Genre,
+                    attributes: ['name'],
+                    through: {
+                      attributes: []
+                    }
+                 }]
+             });
+            dbVideogames = dbVideogames.map( game => {
+                return {
+                    id: game.id,
+                    name: game.name,
+                    platforms: game.platforms.split(", "),
+                    genres: game.Genres.map(genre => genre.name),
+                    image: game.image,
+                    releaseDate: game.releaseDate,
+                    rating: game.rating,
+                }
+            })
         }
         apiVideogames = apiVideogames.map( game => {
             return {
