@@ -8,7 +8,7 @@ module.exports = async (req, res) => {
     try {
         const { idVideogame } = req.params;
         if(regexUUID.test(idVideogame)) {
-            const game = await Videogame.findByPk(idVideogame, {
+            let game = await Videogame.findByPk(idVideogame, {
                 include: [{
                     model: Genre,
                     attributes: ['name'],
@@ -18,6 +18,16 @@ module.exports = async (req, res) => {
                  }]
              });
             if(!game) return res.status(404).send("ID not found.");
+            game = {
+                id: game.id,
+                name: game.name,
+                platforms: game.platforms.split(", "),
+                genres: game.Genres.map(genre => genre.name),
+                image: game.image,
+                description: game.description,
+                releaseDate: game.releaseDate,
+                rating: game.rating,
+            }
             return res.status(200).json(game);
         }
         if(Number(idVideogame) > 961983) return res.status(404).send("ID not found.");
@@ -25,10 +35,11 @@ module.exports = async (req, res) => {
         const game = {
                 id: data.id,
                 name: data.name,
-                platforms: data.platforms,
-                image: data.image,
+                platforms: data.platforms.map(platform => platform.platform.name),
+                image: data.background_image,
                 releaseDate: data.released,
                 rating: data.rating,
+                genres: data.genres.map(genre => genre.name),
             }
         return res.status(200).json(game);
     } catch(error) {
