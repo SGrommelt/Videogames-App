@@ -14,19 +14,19 @@ export default function Pagination(props) {
         props.onPageChange(Number(event.target.id));
     }
 
-    const pageNumbers = pages.map( page => {
-        return(
-            <button key={page} id={page} onClick={handlePageClick} 
-                className={currentPage===page ? 'active' : null}>
-                {page}
-            </button>
-        );
-    })
-
     return (
         <div>
             <ul className="pageNumbers"> 
-                {pageNumbers}
+                {pages.length > 1 ? 
+                pages.map( page => {
+                return(
+                    <button key={page} id={page} onClick={handlePageClick} 
+                        disabled={currentPage===page ? true : false}>
+                        {page}
+                    </button>
+                );
+                })
+                : null }
             </ul>
         </div>
     );
