@@ -36,7 +36,7 @@ function Cards(props) {
         />
 
         {
-            currentPageData.length > 1 ? ( currentPageData.map(game => (
+            currentPageData.length > 0 ? ( currentPageData.map(game => (
                 <Card 
                     id={game.id}
                     name = {game.name}
