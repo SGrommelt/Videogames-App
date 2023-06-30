@@ -1,9 +1,9 @@
 import React  from 'react';
 import styles from "./Filters.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, connect } from "react-redux";
 import { filter, order } from '../../redux/actions/filter.js';
 
-export default function Filters(props) {
+function Filters(props) {
     const dispatch = useDispatch();
     
     const handleFilter = (event) => {
@@ -17,7 +17,7 @@ export default function Filters(props) {
     return (
         <div className={styles.filtersContainer}>
             <label for="OrderBy">Order by: </label>
-            <select name="OrderBy" className={styles.dropDown} onChange={handleOrder}>
+            <select name="OrderBy" className={styles.dropDown} onChange={handleOrder} value={props.order}>
                 <option className={styles.mainOption} value="Default">Default</option>
                 <optgroup label="Order By Name">
                     <option className={styles.mainOption} value="A-Z">A-Z</option>
@@ -29,7 +29,7 @@ export default function Filters(props) {
                 </optgroup>
             </select>
             <label for="FilterBy">Filter by: </label>
-            <select name="FilterBy" className={styles.dropDown} onChange={handleFilter}>
+            <select name="FilterBy" className={styles.dropDown} onChange={handleFilter} value={props.filter}>
                 <option className={styles.option} value="All">All</option>
                 <optgroup label="Filter By Origin">
                     <option className={styles.option} value="Database">Database</option>
@@ -60,3 +60,12 @@ export default function Filters(props) {
         </div>
     );
 }
+
+const mapStateToProps = (state) => {
+    return {
+       filter: state.filter,
+       order: state.order
+    }
+}
+
+export default connect(mapStateToProps, null)(Filters);

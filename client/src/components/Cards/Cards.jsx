@@ -1,17 +1,10 @@
 import styles from './Cards.module.css';
-import { useDispatch, connect } from 'react-redux';
-import { React, useEffect, useState } from 'react';
-import { getVideogames } from '../../redux/actions/getVideogames';
-import { getGenres } from '../../redux/actions/getGenres';
+import { connect } from 'react-redux';
+import { React, useState } from 'react';
 import Card from './Card';
 import Pagination from '../Pagination/Pagination';
 
 function Cards(props) {
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(getVideogames());
-        dispatch(getGenres());
-    }, [dispatch]);
 
     const [currentPage, setCurrentPage] = useState(1);
     const cardsPerPage = 15;

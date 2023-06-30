@@ -5,7 +5,9 @@ const initialState = {
     allVideogames: [],
     videogameDetail: {},
     genres: [],
-    errors: false
+    errors: false,
+    filter: "",
+    order: "",
 }
 
 const reducer = (state = initialState, action) => {
@@ -35,7 +37,7 @@ const reducer = (state = initialState, action) => {
             }
         }
         case FILTER: {
-            if(action.payload === "All") return {...state, allVideogames: state.videogamesFullList}
+            if(action.payload === "All") return {...state, allVideogames: state.videogamesFullList, filter: action.payload}
             const allVideogamesCopy = [...state.videogamesFullList];
             const filteredVideogames = allVideogamesCopy.filter(videogame => {
                 if(action.payload === "Database") return typeof(videogame.id) === "string";
@@ -44,11 +46,12 @@ const reducer = (state = initialState, action) => {
             });
             return {
                 ...state,
-                allVideogames: filteredVideogames
+                allVideogames: filteredVideogames,
+                filter: action.payload
             }
         }
         case ORDER: {
-            if(action.payload === "Default") return {...state, allVideogames: state.videogamesFullList}
+            if(action.payload === "Default") return {...state, allVideogames: state.videogamesFullList, order: action.payload}
             const allVideogamesCopy = [...state.allVideogames];
             const newOrder = allVideogamesCopy.sort((a, b) => {
                 if(action.payload === "A-Z" || action.payload === "Z-A") {
@@ -60,10 +63,10 @@ const reducer = (state = initialState, action) => {
                 }
                 return 0;
             });
-            console.log(newOrder);
             return {
                 ...state,
-                allVideogames: newOrder
+                allVideogames: newOrder,
+                order: action.payload
             }
         }
         case GET_GENRES: {
