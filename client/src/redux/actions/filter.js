@@ -1,9 +1,16 @@
-import { FILTER, ORDER } from '../types.js';
+import { FILTER_BY_ORIGIN, FILTER_BY_GENRE, ORDER } from '../types.js';
 
-export const filter = (filter) => {
+export const filterByOrigin = (origin) => {
     return {
-        type: FILTER,
-        payload: filter
+        type: FILTER_BY_ORIGIN,
+        payload: origin
+    }
+};
+
+export const filterByGenre = (genre) => {
+    return {
+        type: FILTER_BY_GENRE,
+        payload: genre
     }
 };
 

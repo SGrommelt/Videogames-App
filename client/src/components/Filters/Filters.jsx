@@ -1,13 +1,17 @@
 import React  from 'react';
 import styles from "./Filters.module.css";
 import { useDispatch, connect } from "react-redux";
-import { filter, order } from '../../redux/actions/filter.js';
+import { filterByOrigin, filterByGenre, order } from '../../redux/actions/filter.js';
 
 function Filters(props) {
     const dispatch = useDispatch();
     
-    const handleFilter = (event) => {
-        dispatch(filter(event.target.value));
+    const handleFilterByOrigin = (event) => {
+        dispatch(filterByOrigin(event.target.value));
+    }
+
+    const handleFilterByGenre = (event) => {
+        dispatch(filterByGenre(event.target.value));
     }
 
     const handleOrder = (event) => {
@@ -28,34 +32,34 @@ function Filters(props) {
                     <option className={styles.option} value="Descending">Descending</option>
                 </optgroup>
             </select>
-            <label for="FilterBy">Filter by: </label>
-            <select name="FilterBy" className={styles.dropDown} onChange={handleFilter} value={props.filter}>
+            <label for="FilterByOrigin">Filter by Origin: </label>
+            <select name="FilterByOrigin" className={styles.dropDown} onChange={handleFilterByOrigin} value={props.filterByOrigin}>
                 <option className={styles.option} value="All">All</option>
-                <optgroup label="Filter By Origin">
-                    <option className={styles.option} value="Database">Database</option>
-                    <option className={styles.option} value="API">API</option>
-                </optgroup>
-                <optgroup label="Filter By Genre">
-                    <option className={styles.option} value="Action">Action</option>
-                    <option className={styles.option} value="Indie">Indie</option>
-                    <option className={styles.option} value="Adventure">Adventure</option>
-                    <option className={styles.option} value="RPG">RPG</option>
-                    <option className={styles.option} value="Strategy">Strategy</option>
-                    <option className={styles.option} value="Shooter">Shooter</option>
-                    <option className={styles.option} value="Casual">Casual</option>
-                    <option className={styles.option} value="Simulation">Simulation</option>
-                    <option className={styles.option} value="Puzzle">Puzzle</option>
-                    <option className={styles.option} value="Arcade">Arcade</option>
-                    <option className={styles.option} value="Platformer">Platformer</option>
-                    <option className={styles.option} value="Massively Multiplayer">Massively Multiplayer</option>
-                    <option className={styles.option} value="Racing">Racing</option>
-                    <option className={styles.option} value="Sports">Sports</option>
-                    <option className={styles.option} value="Fighting">Fighting</option>
-                    <option className={styles.option} value="Family">Family</option>
-                    <option className={styles.option} value="Board Games">Board Games</option>
-                    <option className={styles.option} value="Educational">Educational</option>
-                    <option className={styles.option} value="Card">Card</option>
-                </optgroup>
+                <option className={styles.option} value="Database">Database</option>
+                <option className={styles.option} value="API">API</option>
+            </select>
+            <label for="FilterByGenre">Filter by Genre: </label>
+            <select name="FilterByGenre" className={styles.dropDown} onChange={handleFilterByGenre} value={props.filterByGenre}>
+                <option className={styles.option} value="All">All</option>
+                <option className={styles.option} value="Action">Action</option>
+                <option className={styles.option} value="Indie">Indie</option>
+                <option className={styles.option} value="Adventure">Adventure</option>
+                <option className={styles.option} value="RPG">RPG</option>
+                <option className={styles.option} value="Strategy">Strategy</option>
+                <option className={styles.option} value="Shooter">Shooter</option>
+                <option className={styles.option} value="Casual">Casual</option>
+                <option className={styles.option} value="Simulation">Simulation</option>
+                <option className={styles.option} value="Puzzle">Puzzle</option>
+                <option className={styles.option} value="Arcade">Arcade</option>
+                <option className={styles.option} value="Platformer">Platformer</option>
+                <option className={styles.option} value="Massively Multiplayer">Massively Multiplayer</option>
+                <option className={styles.option} value="Racing">Racing</option>
+                <option className={styles.option} value="Sports">Sports</option>
+                <option className={styles.option} value="Fighting">Fighting</option>
+                <option className={styles.option} value="Family">Family</option>
+                <option className={styles.option} value="Board Games">Board Games</option>
+                <option className={styles.option} value="Educational">Educational</option>
+                <option className={styles.option} value="Card">Card</option>
             </select>
         </div>
     );
@@ -63,7 +67,8 @@ function Filters(props) {
 
 const mapStateToProps = (state) => {
     return {
-       filter: state.filter,
+       filterByOrigin: state.filterByOrigin,
+       filterByGenre: state.filterByGenre,
        order: state.order
     }
 }
