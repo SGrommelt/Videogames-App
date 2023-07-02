@@ -22,7 +22,10 @@ const reducer = (state = initialState, action) => {
                 videogamesFullList: action.payload,
                 allVideogames: action.payload,
                 errors: false,
-                defaultOrderedRef: action.payload
+                defaultOrderedRef: action.payload,
+                filterByOrigin: "All",
+                filterByGenre: "All",
+                order: "Default"
             }
         }
         case GET_VIDEOGAME_BY_ID: {
