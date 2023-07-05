@@ -61,6 +61,7 @@ module.exports = async (req, res) => {
         const allVideogames = apiVideogames.concat(dbVideogames);
         return res.status(200).json(allVideogames);
     } catch(error) {
+        console.log(error.message);
         return res.status(500).json(error.message);
     }
 }

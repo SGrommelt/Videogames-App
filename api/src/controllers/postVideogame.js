@@ -12,6 +12,7 @@ module.exports = async (req, res) => {
         newGame.setGenres(genres);
         return res.status(200).send("Game created succesfully.");
     } catch(error) {
+        console.log(error.message);
         return res.status(500).json(error.message);
     }
 }

@@ -12,6 +12,7 @@ module.exports = async (req, res) => {
         Genre.bulkCreate(genres);
         return res.status(200).send("Genres have been added to the database.");
     } catch(error) {
+        console.log(error.message);
         return res.status(500).json(error.message);
     }
 }
