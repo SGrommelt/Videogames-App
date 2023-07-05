@@ -15,9 +15,9 @@ export default function SearchBar(props) {
    };
    
    return (
-      <div className={styles.searchBarContainer}>
-         <input value={name} onChange={handleChange} className={styles.input} type='search' placeholder="Search by Name..." />
+      <form className={styles.searchBarContainer}>
+         <input value={name} onChange={handleChange} className={styles.input} type='search' placeholder="Search by Name..." required/>
          <button onClick={handleClick} className={styles.searchButton}>Search</button>
-      </div>
+      </form>
    );
 }

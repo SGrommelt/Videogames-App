@@ -5,3 +5,44 @@
     overflow: hidden;
     background-color: pink;
 }
+
+.backgroundImg{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    left: 0;
+    top: 0;
+}
+
+.filtersBar {
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: 300px;
+    background-color: rgba(0, 0, 0, 0.507);
+    z-index: 10;
+}
+
+.addButton {
+    font-family: 'Bebas Neue', sans-serif;
+    position: absolute;
+    bottom: 30px;
+    background-color: rgb(255, 91, 186);
+    color: white;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 10px;
+    border: none;
+    left: 50%;
+    transform: translate(-50%);
+    transition: 400ms;
+}
+
+.addButton:hover {
+    font-size: 23px;
+    box-shadow: 0 0 15px #ffffff1c,
+                0 0 30px #ffffff1c,
+                inset 0 0 15px #ffffff1c,
+                0 0 30px #ffffff1c;
+}

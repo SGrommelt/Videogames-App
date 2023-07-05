@@ -77,8 +77,9 @@ function Form(props) {
     
     return (
         <div className={styles.formWrapper}>
+            <img className={styles.backgroundImg} src={require("../../img/VideogamesBG.jpg")} alt="" />
             <form className ={styles.form} onSubmit={handleSubmit} >   
-                <label>Name: </label>
+                <label className={styles.label}>Name: </label>
                 <input 
                             type="text"
                             name="name"
@@ -92,7 +93,7 @@ function Form(props) {
                         {errors.name ? errors.name : null}
                     </p>
                 </div>
-                <label>Image URL: </label>
+                <label className={styles.label}>Image URL: </label>
                 <input 
                             type="text"
                             name="image"
@@ -106,7 +107,7 @@ function Form(props) {
                         {errors.image ? errors.image : null}
                     </p>
                 </div>
-                <label>Description: </label>
+                <label className={styles.label}>Description: </label>
                 <textarea 
                             type="text"
                             name="description"
@@ -120,7 +121,7 @@ function Form(props) {
                         {errors.description ? errors.description : null}
                     </p>
                 </div>
-                <label>Platforms: </label>
+                <label className={styles.label}>Platforms: </label>
                 <textarea 
                             type="text"
                             name="platforms"
@@ -134,7 +135,7 @@ function Form(props) {
                         {errors.platforms ? errors.platforms : null}
                     </p>
                 </div>
-                <label>Release date: </label>
+                <label className={styles.label}>Release date: </label>
                 <input 
                             type="date"
                             name="releaseDate"
@@ -148,7 +149,7 @@ function Form(props) {
                         {errors.releaseDate ? errors.releaseDate : null}
                     </p>
                 </div>
-                <label>Rating: </label>
+                <label className={styles.label}>Rating: </label>
                 <input 
                             type="number"
                             name="rating"
@@ -162,24 +163,26 @@ function Form(props) {
                         {errors.rating ? errors.rating : null}
                     </p>
                 </div>
-                <label>Genres: </label>
+                <label className={styles.label}>Genres: </label>
                 <br />
-                {props.genres.map( genre => {
-                    return (
-                        <>
-                            <label>{genre.name}: </label>
-                            <input 
-                            type="checkbox"
-                            id={genre.id}
-                            name="genres"
-                            value={genre.id} 
-                            onChange={handleChange}
-                            className={styles.input}
-                            />
-                            <br />
-                        </>
-                    )
-                })}
+                <div className={styles.genresContainer}>
+                    {props.genres.map( genre => {
+                        return (
+                            <>
+                                <label className={styles.labelCheck}>{genre.name}: </label>
+                                <input 
+                                type="checkbox"
+                                id={genre.id}
+                                name="genres"
+                                value={genre.id} 
+                                onChange={handleChange}
+                                className={styles.inputCheck}
+                                />
+                                <br />
+                            </>
+                        )
+                    })}
+                </div>
                 <div className={styles.errorDiv}>
                     <p className={styles.error}>
                         {errors.genres ? errors.genres : null}

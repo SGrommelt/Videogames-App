@@ -15,13 +15,15 @@ export default function Pagination(props) {
     }
 
     return (
-        <div>
-            <ul className="pageNumbers"> 
+        <div className={styles.pagesContainer}>
+            <ul className={styles.list}> 
                 {pages.length > 1 ? 
                 pages.map( page => {
                 return(
                     <button key={page} id={page} onClick={handlePageClick} 
-                        disabled={currentPage===page ? true : false}>
+                        disabled={currentPage===page ? true : false}
+                        className={styles.pageButton}
+                        >
                         {page}
                     </button>
                 );

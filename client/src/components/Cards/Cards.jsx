@@ -7,7 +7,7 @@ import { setCurrentPage } from '../../redux/actions/setCurrentPage';
 
 function Cards(props) {
     const dispatch = useDispatch();
-    // const [currentPage, setCurrentPage] = useState(1);
+    
     const cardsPerPage = 15;
     const totalCards = props.allVideogames.length;
 
@@ -17,7 +17,6 @@ function Cards(props) {
     let currentPageData = props.allVideogames.slice(firstIndex, lastIndex);
 
     const onPageChange= (pageNumber)=>{
-        // setCurrentPage(pageNumber);
         dispatch(setCurrentPage(pageNumber));
     }
 
@@ -28,24 +27,28 @@ function Cards(props) {
             currentPage={props.currentPage}
             pageSize={cardsPerPage}
             onPageChange={onPageChange}
-        />
-
-        {
-            currentPageData.length > 0 ? ( currentPageData.map(game => (
-                <Card 
-                    id={game.id}
-                    name = {game.name}
-                    genres = {game.genres}
-                    image = {game.image}
-                />
-             )))
-        : null }
-        {/* <Pagination
-            totalElements={totalCards}
-            currentPage={currentPage}
-            pageSize={cardsPerPage}
-            onPageChange={onPageChange}
-        /> */}
+            />
+            <div className={styles.cardsContainer}>
+                <img className={styles.backgroundImg} src={require("../../img/VideogamesFG.png")} alt="" />
+                <div className={styles.videoDiv}>
+                    <video className={styles.video} loop autoPlay muted>
+                        <source src={require("../../img/mainVideo.mp4")} type="video/mp4"></source>
+                    </video>
+                </div>
+                <img className={styles.backgroundImgg} src={require("../../img/VideogamesFRAME.png")} alt="" />
+                <div className={styles.cards}>
+                    {
+                        currentPageData.length > 0 ? ( currentPageData.map(game => (
+                            <Card 
+                                id={game.id}
+                                name = {game.name}
+                                genres = {game.genres}
+                                image = {game.image}
+                            />
+                        )))
+                    : null }
+                </div> 
+            </div>
         </div>
     );
 }

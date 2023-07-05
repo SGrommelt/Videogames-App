@@ -20,7 +20,7 @@ function Filters(props) {
 
     return (
         <div className={styles.filtersContainer}>
-            <label for="OrderBy">Order by: </label>
+            <label for="OrderBy" className={styles.label}>Order by: </label>
             <select name="OrderBy" className={styles.dropDown} onChange={handleOrder} value={props.order}>
                 <option className={styles.mainOption} value="Default">Default</option>
                 <optgroup label="Order By Name">
@@ -32,13 +32,13 @@ function Filters(props) {
                     <option className={styles.option} value="Descending">Descending</option>
                 </optgroup>
             </select>
-            <label for="FilterByOrigin">Filter by Origin: </label>
+            <label for="FilterByOrigin" className={styles.label}>Filter by Origin: </label>
             <select name="FilterByOrigin" className={styles.dropDown} onChange={handleFilterByOrigin} value={props.filterByOrigin}>
                 <option className={styles.option} value="All">All</option>
                 <option className={styles.option} value="Database">Database</option>
                 <option className={styles.option} value="API">API</option>
             </select>
-            <label for="FilterByGenre">Filter by Genre: </label>
+            <label for="FilterByGenre" className={styles.label}>Filter by Genre: </label>
             <select name="FilterByGenre" className={styles.dropDown} onChange={handleFilterByGenre} value={props.filterByGenre}>
                 <option className={styles.option} value="All">All</option>
                 <option className={styles.option} value="Action">Action</option>

@@ -8,12 +8,14 @@ import Filters from '../Filters/Filters.jsx';
 export default function Home(props) {
   return (
     <div className={styles.background}>
-      <h1>Home</h1>
-      <SearchBar />
-      <Filters />
-      <Link to='/form'>
-        <button>Add Videogame</button>
-      </Link>
+      <img className={styles.backgroundImg} src={require("../../img/VideogamesBG.jpg")} alt="" />
+      <div className={styles.filtersBar}>
+        <SearchBar />
+        <Filters />
+        <Link to='/form'>
+          <button className={styles.addButton}>Add Videogame</button>
+        </Link>
+      </div>
       <Cards />
     </div>
   );

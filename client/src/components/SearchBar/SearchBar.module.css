@@ -1,0 +1,20 @@
+.input {
+    background: none;
+    border: 3px solid rgb(255, 91, 186);
+    padding: 10px;
+    border-radius: 10px 0px 0px 10px;
+    margin-top: 30px;
+    height: 40px;
+}
+
+.searchButton {
+    height: 40px;
+    border-radius: 0px 10px 10px 0px;
+    background-color: rgb(255, 91, 186);
+    border: none;
+    font-family: 'Bebas Neue', sans-serif;
+    color: white;
+    padding: 10px;
+    font-size: 15px;
+    border: none;
+}
