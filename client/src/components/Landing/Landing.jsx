@@ -1,17 +1,19 @@
 import React  from 'react';
 import styles from "./Landing.module.css";
-import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 export default function Landing(props) {
-  const navigate = useNavigate();
-  const handleClick = () => {
-    navigate ('/home');
-  }
 
   return (
     <div className={styles.background}>
-      <h1>Landing</h1>
-      <button onClick={handleClick}>Entrar</button>
+      <video className={styles.video} loop autoPlay muted>
+          <source src="https://static.videezy.com/system/resources/previews/000/051/739/original/4K-18.mp4" type="video/mp4"></ source>
+      </video>
+      <div className={styles.textContainer}>
+        <Link to="/home">
+          <div className={styles.text}>PRESS START</div>
+        </Link>
+      </div>
     </div>
   );
 }

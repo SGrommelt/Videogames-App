@@ -1,7 +1,105 @@
 .background {
-    position: fixed;
     width: 100%;
     height: 100%;
+    position: fixed;
+    background: #1d0219;
     overflow: hidden;
-    background-color: lightblue;
+}
+
+a:link { text-decoration: none; }
+a:visited { text-decoration: none; }
+a:hover { text-decoration: none; }
+a:active { text-decoration: none; }
+
+.textContainer {
+    display: flex;
+    width: 100vw;
+    height: 60vh;
+    align-items: end;
+    justify-content: center;
+    margin: 0;
+    background: none;
+    font-size: 50px;
+    letter-spacing: -7px;
+    z-index: -1;
+    bottom: 0
+}
+
+.text{
+    color: rgb(216, 133, 188);
+    font-family: 'Press Start 2P', cursive;
+    animation: glitch 1s linear infinite;
+    text-shadow: 12px 6px 20px rgba(255, 35, 163, 0.432),
+    -2px 1px 30px rgba(255, 35, 163, 0.384);
+    transition: 1s;
+}
+
+.text:hover {
+    color: rgba(149, 243, 255, 0.623);
+    text-shadow: 12px 6px 20px rgba(149, 243, 255, 0.301),
+    -2px 1px 30px rgba(149, 243, 255, 0.315);
+    transition: 1s;
+}
+
+@keyframes glitch{
+    2%,64%{
+      transform: translate(6px,0) skew(0deg);
+    }
+    4%,60%{
+      transform: translate(-6px,0) skew(0deg);
+    }
+    62%{
+      transform: translate(0,0) skew(50deg); 
+    }
+}
+
+.text:before,
+.text:after{
+    content: attr(title);
+    position: absolute;
+    left: 0;
+}
+
+.text:before{
+    animation: glitchTop 1s linear infinite;
+    clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+}
+
+@keyframes glitchTop{
+    2%,64%{
+      transform: translate(2px,-2px);
+    }
+    4%,60%{
+      transform: translate(-2px,2px);
+    }
+    62%{
+      transform: translate(13px,-1px) skew(-13deg); 
+    }
+}
+
+.text:after{
+    animation: glitchBotom 1.5s linear infinite;
+    clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+    -webkit-clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+}
+
+@keyframes glitchBotom{
+    2%,64%{
+      transform: translate(-2px,0);
+    }
+    4%,60%{
+      transform: translate(-2px,0);
+    }
+    62%{
+      transform: translate(-22px,5px) skew(21deg); 
+    }
+}
+
+.video {
+    position: fixed;
+    width: 1920px;
+    height: 1080px;
+    opacity: 0.5;
+    left: 0;
 }
