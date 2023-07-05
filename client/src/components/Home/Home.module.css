@@ -46,3 +46,26 @@
                 inset 0 0 15px #ffffff1c,
                 0 0 30px #ffffff1c;
 }
+
+.homeButton {
+    font-family: 'Bebas Neue', sans-serif;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: rgb(255, 91, 186);
+    color: white;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 10px;
+    border: none;
+    transition: 400ms;
+    z-index: 20;
+}
+
+.homeButton:hover {
+    font-size: 23px;
+    box-shadow: 0 0 15px #ffffff1c,
+                0 0 30px #ffffff1c,
+                inset 0 0 15px #ffffff1c,
+                0 0 30px #ffffff1c;
+}
