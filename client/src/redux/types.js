@@ -6,3 +6,4 @@ export const FILTER_BY_GENRE = "FILTER_BY_GENRE";
 export const ORDER = "ORDER";
 export const ERROR = "ERROR";
 export const GET_GENRES = "GET_GENRES";
+export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";

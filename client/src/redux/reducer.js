@@ -1,4 +1,4 @@
-import { GET_VIDEOGAMES, GET_VIDEOGAME_BY_ID, POST_VIDEOGAME, FILTER_BY_ORIGIN, FILTER_BY_GENRE, ORDER, GET_GENRES, ERROR } from "./types";
+import { GET_VIDEOGAMES, GET_VIDEOGAME_BY_ID, POST_VIDEOGAME, FILTER_BY_ORIGIN, FILTER_BY_GENRE, ORDER, GET_GENRES, ERROR, SET_CURRENT_PAGE } from "./types";
 
 const initialState = {
     videogamesFullList: [],
@@ -12,6 +12,7 @@ const initialState = {
     filteredByOrigin: [],
     order: "Default",
     defaultOrderedRef: [],
+    currentPage: 1
 }
 
 const reducer = (state = initialState, action) => {
@@ -25,7 +26,9 @@ const reducer = (state = initialState, action) => {
                 defaultOrderedRef: action.payload,
                 filterByOrigin: "All",
                 filterByGenre: "All",
-                order: "Default"
+                order: "Default",
+                currentPage: 1,
+                videogameDetail: {}
             }
         }
         case GET_VIDEOGAME_BY_ID: {
@@ -47,10 +50,10 @@ const reducer = (state = initialState, action) => {
         case FILTER_BY_ORIGIN: {
             let allVideogamesCopy = [];
             if(state.filterByGenre !== "All") {
-                if(action.payload === "All") return {...state, allVideogames: [...state.filteredByGenre], filterByOrigin: action.payload}
+                if(action.payload === "All") return {...state, allVideogames: [...state.filteredByGenre], filteredByOrigin: [...state.filteredByGenre], filterByOrigin: action.payload, currentPage: 1}
                 allVideogamesCopy = [...state.filteredByGenre];
             } else {
-            if(action.payload === "All") return {...state, allVideogames: [...state.videogamesFullList], filterByOrigin: action.payload}
+            if(action.payload === "All") return {...state, allVideogames: [...state.videogamesFullList], filteredByOrigin: [...state.videogamesFullList], filterByOrigin: action.payload, currentPage: 1}
                 allVideogamesCopy = [...state.videogamesFullList];
             }
             const filteredVideogames = allVideogamesCopy.filter(videogame => {
@@ -65,16 +68,17 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 allVideogames: filteredVideogames,
                 filterByOrigin: action.payload,
-                filteredByOrigin: filteredByOrigin
+                filteredByOrigin: filteredByOrigin,
+                currentPage: 1
             }
         }
         case FILTER_BY_GENRE: {
             let allVideogamesCopy = [];
             if(state.filterByOrigin !== "All") {
-                if(action.payload === "All") return {...state, allVideogames: [...state.filteredByOrigin], filterByGenre: action.payload}
+                if(action.payload === "All") return {...state, allVideogames: [...state.filteredByOrigin], filteredByGenre: [...state.filteredByOrigin], filterByGenre: action.payload, currentPage: 1}
                 allVideogamesCopy = [...state.filteredByOrigin];
             } else {
-                if(action.payload === "All") return {...state, allVideogames: [state.videogamesFullList], filterByGenre: action.payload}
+                if(action.payload === "All") return {...state, allVideogames: [...state.videogamesFullList], filteredByGenre: [...state.videogamesFullList], filterByGenre: action.payload, currentPage: 1}
                 allVideogamesCopy = [...state.videogamesFullList];
             }
             const filteredVideogames = allVideogamesCopy.filter(videogame => videogame.genres.includes(action.payload));
@@ -83,11 +87,12 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 allVideogames: filteredVideogames,
                 filterByGenre: action.payload,
-                filteredByGenre: filteredByGenre
+                filteredByGenre: filteredByGenre,
+                currentPage: 1
             }
         }
         case ORDER: {
-            if(action.payload === "Default") return {...state, allVideogames: [...state.defaultOrderedRef], order: action.payload, filterByOrigin: "All", filterByGenre: "All"}
+            if(action.payload === "Default") return {...state, allVideogames: [...state.defaultOrderedRef], videogamesFullList: [...state.defaultOrderedRef], order: action.payload, filterByOrigin: "All", filterByGenre: "All", currentPage: 1}
             const sortFunction = (a, b) => {
                 if(action.payload === "A-Z" || action.payload === "Z-A") {
                     if (a.name.toLowerCase() > b.name.toLowerCase()) return "A-Z" === action.payload ? 1 : -1;
@@ -106,7 +111,14 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 allVideogames: newAllVideogames,
                 videogamesFullList: newFullList,
-                order: action.payload
+                order: action.payload,
+                currentPage: 1,
+            }
+        }
+        case SET_CURRENT_PAGE: {
+            return {
+                ...state,
+                currentPage: action.payload
             }
         }
         case GET_GENRES: {
