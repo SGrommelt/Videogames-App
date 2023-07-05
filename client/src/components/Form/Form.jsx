@@ -69,6 +69,11 @@ function Form(props) {
             rating: 0,
             genres: []
         })
+        props.genres.map(genre => {
+            const check = document.getElementById(genre.id);
+            check.checked = false;
+            return 0;
+        })
     };
     
     return (
@@ -166,6 +171,7 @@ function Form(props) {
                             <label>{genre.name}: </label>
                             <input 
                             type="checkbox"
+                            id={genre.id}
                             name="genres"
                             value={genre.id} 
                             onChange={handleChange}
