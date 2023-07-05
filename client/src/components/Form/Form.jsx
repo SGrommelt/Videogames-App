@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styles from './Form.module.css';
-import { validation, validateSubmit } from "./validation";
+import { validation } from "./validation";
 import { postVideogame } from '../../redux/actions/postVideogame';
 import { useDispatch, connect } from 'react-redux';
 
@@ -56,8 +56,6 @@ function Form(props) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const validate = validateSubmit(inputs, errors);
-        if (validate !== true) return alert(validate);
         dispatch(postVideogame(inputs));
         alert("Game created");
         setInputs({
@@ -186,7 +184,15 @@ function Form(props) {
                         {errors.genres ? errors.genres : null}
                     </p>
                 </div>
-                <button className={styles.button} type="submit" >SUBMIT</button>
+                <button className={styles.button} type="submit" 
+                    disabled={Object.keys(errors).length > 0 || 
+                        !inputs.name || 
+                        !inputs.image ||
+                        !inputs.platforms ||
+                        !inputs.releaseDate ||
+                        inputs.genres.length === 0
+                    ? true : false}
+                >SUBMIT</button>
             </form>
         </div>
     );
@@ -194,7 +200,8 @@ function Form(props) {
 
 const mapStateToProps = (state) => {
     return {
-       genres: state.genres
+       genres: state.genres,
+       errors: state.errors,
     }
 }
 
