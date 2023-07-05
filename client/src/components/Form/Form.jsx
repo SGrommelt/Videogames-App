@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styles from './Form.module.css';
 import { validation } from "./validation";
 import { postVideogame } from '../../redux/actions/postVideogame';
+import { getVideogames } from '../../redux/actions/getVideogames';
 import { useDispatch, connect } from 'react-redux';
 
 function Form(props) {
@@ -57,7 +58,7 @@ function Form(props) {
     const handleSubmit = (event) => {
         event.preventDefault();
         dispatch(postVideogame(inputs));
-        alert("Game created");
+        dispatch(getVideogames());
         setInputs({
             name: "",
             image: "",
