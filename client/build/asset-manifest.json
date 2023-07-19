@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/static/css/main.65040d4c.css",
+    "main.js": "/static/js/main.3035a462.js",
+    "static/js/787.c4e7f8f9.chunk.js": "/static/js/787.c4e7f8f9.chunk.js",
+    "static/media/mainVideo.mp4": "/static/media/mainVideo.b967ce007e302c602ef9.mp4",
+    "static/media/VideogamesBG.jpg": "/static/media/VideogamesBG.51dc13067fed7e325d2c.jpg",
+    "static/media/VideogamesFG.png": "/static/media/VideogamesFG.6f6c6fc47788abfe84eb.png",
+    "static/media/VideogamesFRAME.png": "/static/media/VideogamesFRAME.a9adb1a21f7f40e6e833.png",
+    "static/media/homeIcon.png": "/static/media/homeIcon.cc79d0f39c2f404b8e1d.png",
+    "index.html": "/index.html",
+    "main.65040d4c.css.map": "/static/css/main.65040d4c.css.map",
+    "main.3035a462.js.map": "/static/js/main.3035a462.js.map",
+    "787.c4e7f8f9.chunk.js.map": "/static/js/787.c4e7f8f9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.65040d4c.css",
+    "static/js/main.3035a462.js"
+  ]
+}
