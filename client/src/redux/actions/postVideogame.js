@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { POST_VIDEOGAME, ERROR } from '../types.js';
-const ENDPOINT = 'http://localhost:3001/videogames';
+const ENDPOINT = 'https://videogames-app-obew.onrender.com/videogames';
 
 export const postVideogame = (newVideogame) => {
    return async (dispatch) => {

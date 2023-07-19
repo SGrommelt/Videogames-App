@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { GET_GENRES, ERROR } from '../types.js';
-const ENDPOINT = 'http://localhost:3001/genres';
+const ENDPOINT = 'https://videogames-app-obew.onrender.com/genres';
 
 export const getGenres = () => {
    return async (dispatch) => {
