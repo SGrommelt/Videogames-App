@@ -15,6 +15,7 @@ export default function Home(props) {
 
   return (
     <div className={styles.background}>
+      <h1>HOME</h1>
       <button className={styles.homeButton} onClick={handleClick}>
         <img className={styles.homeIcon} src={require("../../img/homeIcon.png")} alt="" />
         {/* HOME      */}
