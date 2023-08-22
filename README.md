@@ -26,15 +26,15 @@ An app that displays information about different video games. The app gets the n
 
 **Landing**
 
-<img src="./img/LoginGIF.gif" alt="" width="384" height="216" />
+<img src="./img/Landing.gif" alt="" width="384" height="216" />
 
 **Home**
 
-<img src="./img/SearchGIF.gif" alt="" />
+<img src="./img/Home.gif" alt="" width="384" height="216" />
 
 **Game Detail**
 
-<img src="./img/DetailGIF.gif" alt="" width="384" height="216" />
+<img src="./img/GameDetail.gif" alt="" width="384" height="216" />
 
 ## Installation
 
